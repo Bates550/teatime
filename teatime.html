@@ -26,7 +26,7 @@
 				<li>
 					<input type="number" value="0" min="0" max="9" class="timer" id="timer-min">
 					:
-					<input type="number" value="00" class="timer" id="timer-sec">
+					<input type="number" value="00" min="00" max="59" onkeydown="return isNumber(event, this)" class="timer" id="timer-sec">
 				</li>
 				<li><button id="control" onclick="startTimer(3, 0)">Start</button></li>
 			</ul>
