@@ -1,0 +1,142 @@
+
+@import url(http://fonts.googleapis.com/css?family=Lato|Courgette|Open+Sans|Roboto);
+
+/***********************************
+ * ----------- GENERAL ----------- *
+ ***********************************/
+
+* {
+	margin: 0;
+	padding: 0;
+	//font-family: "Lato";
+}
+
+html {
+	font-family: "Lato";
+}
+
+body {
+	background-color: #73F06E;
+	height: 100vh;
+}
+
+a:link, a:visited {
+	color: #FFF;
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	color: #d3cec9;
+}
+
+ul {
+	list-style-type: none;
+}
+
+p {
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 16px;
+	line-height: 25px;
+	color: #FFF;
+}
+
+h3, h4, h5, h6 {
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.container {
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+/***********************************
+ * ----------- HEADER ------------ *
+ ***********************************/
+
+#masthead {
+	background-color: #37D932;
+	height: 45px;
+	border-bottom: 7px solid #25C720;
+}
+
+#masthead h1 {
+	padding-left: 6px;
+	font-size: 35px;
+	font-family: "Courgette";
+	color: #FFF;//#21541F;	
+	text-shadow: -2px 4px 0px #25C720;
+	text-align: center;
+}
+
+
+/***********************************
+ * ------------ MAIN ------------- *
+ ***********************************/
+
+main {
+	height: 83.903vh;	
+}
+
+#animation {
+	margin: 0 auto;
+	width: 200px;
+}
+
+#animation img {
+	width: 200px;
+}
+
+#interface {
+	margin: 0 auto;
+	width: 200px;
+}
+
+
+#interface li {
+	text-align: center;
+	font-family: "Lato";
+	font-size: 30px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+.timer {
+	background-color: #73F06E;
+	border: none;
+	font-family: "Lato";
+	font-size: 30px;
+}
+
+#timer-min {
+	width: 18px;
+	margin-right: -3px;
+}
+
+#timer-sec {
+	width: 35px;
+	margin-left: -3px;
+}
+
+/***********************************
+ * ----------- FOOTER ------------ *
+ ***********************************/
+
+footer {
+	background-color: #37D932;
+	border-top: 7px solid #25C720;
+	height: 45px;
+}
+
+footer p {
+	text-align: center;
+	font-size: 14px;
+	padding-top: 7px;
+	color: #FFF;
+}

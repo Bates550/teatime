@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="teatime.css">
+
+	<title>TeaTime</title>
+
+</head>
+
+<body>
+<header id="masthead">
+   <div class="container">
+		<h1>TeaTime</h1>
+	</div>
+</header>
+<main>
+	<div class="container">
+		<section id="animation">
+			<img src="http://pngimg.com/upload/cup_PNG2002.png">
+		</section>
+		<section id="interface">
+			<ul>
+				<li><button>Tea Type</button></li>
+				<li>
+					<input type="number" value="0" min="0" max="9" class="timer" id="timer-min">
+					:
+					<input type="number" value="00" class="timer" id="timer-sec">
+				</li>
+				<li><button id="control" onclick="startTimer(3, 0)">Start</button></li>
+			</ul>
+		</section>
+	</div><!-- #main-container -->
+</main> 
+
+<footer>
+	<div class="container">
+		<p>&copy; 2014 <a href="#">Sean Spearman</a></p>   
+	</div>
+</footer>
+<script src="teatime.js"></script>
+</body>
+</html>
