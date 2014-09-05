@@ -44,23 +44,71 @@ Time.prototype.toString = function() {
 	return result;
 }
 
-function isNumber(event, element) {
+/* Adapted from http://demosthenes.info/blog/748/The-HTML5-number-Input */
+function isNumber(event, element, type) {
 	if (event) {
-		console.log(event);
 		var max_chars = element.getAttribute("max").length;
+		var min_chars = element.getAttribute("min").length;
 		var charCode = (event.which) ? event.which : event.keyCode;
-		if (charCode != 190 && charCode > 31 &&
-			(charCode < 48 || charCode > 57) &&
-			(charCode < 96 || charCode > 105) &&
-			(charCode < 37 || charCode > 40) &&
-			charCode != 110 && charCode != 8 && charCode != 46 ) {
-		return false;
+		var char = String.fromCharCode(charCode);
+		if (charCode > 31 && 						// non-control chars
+			(charCode < 48 || charCode > 57) &&		// "0"-"9"
+			(charCode < 96 || charCode > 105) &&	// "0"-"9" (numpad)
+			(charCode < 37 || charCode > 40) &&		// arrow keys
+			charCode != 8 && 						// backspace
+			charCode != 46 ) {						// delete
+			return false;
 		}
 		if (element.value.length >= max_chars && charCode > 47) { 
 			return false; 
 		}
-		else { 
+		else if (charCode == 40 && 			// Down arrow
+			element.valueAsNumber == 0) { 	// Min value for sec and min
+			if (type == 'sec') {
+				element.value = "59";
+			}
+			else if (type == 'min') {
+				element.value = "9";
+			}
+			return false;
+		}
+		else if (charCode == 38 && 			// Up arrow 
+			element.valueAsNumber == 59 &&	// Max value for sec
+			type == 'sec') {
+			element.value = "00";
+			return false;
+		}
+		// Up arrow for minutes input
+		else if (charCode == 38 && 			// Up arrow
+			element.valueAsNumber == 9 && 	// Max value for min
+			type == 'min') {
+			element.value = "0";
+			return false;
+		}
+		else {
 			return true; 
 		}
 	}
+}
+
+function fixInput(event, element, type) {
+	if (event) {
+		if (element.valueAsNumber > 59) {
+			element.value = "59";
+		}
+		else if (element.valueAsNumber < 10 && type == 'sec') {
+			element.value = "0" + element.value;
+		}
+		else if (element.value == "" && type == 'sec') {
+			element.value = "00";
+		}
+		else if (element.value == "" && type == 'min') {
+			element.value = "0";
+		}
+		//console.log(element.value);
+	}
+}
+
+function sayHi() {
+	console.log("Hi.");
 }
