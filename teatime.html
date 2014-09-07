@@ -21,15 +21,25 @@
 			<img src="http://pngimg.com/upload/cup_PNG2002.png">
 		</section>
 		<section id="interface">
-			<ul>
-				<li><button>Tea Type</button></li>
-				<li>
-					<input type="number" value="0" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" class="timer" id="timer-min">
-					:
-					<input type="number" value="00" min="00" max="59" onkeydown="return isNumber(event, this, 'sec')" onchange="fixInput(event, this, 'sec')" class="timer" id="timer-sec">
-				</li>
-				<li><button id="control" onclick="startTimer(3, 0)">Start</button></li>
-			</ul>
+			<section id="timer"> 
+				<p>Set steep time:</p>
+				<div id="timer-container">
+					<input type="number" value="3" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" id="timer-min">
+					<span>:</span>
+					<input type="number" value="00" min="00" max="59" onkeydown="return isNumber(event, this, 'sec')" onchange="fixInput(event, this, 'sec')" id="timer-sec">
+				</div>
+				<div class="checkbox-container"	>
+					<div class="checkbox">
+						<label for="default-time">
+							<input type="checkbox" value="None" id="default-time">
+						</label>
+					</div>
+					<p>Set as default time.</p>
+				</div>
+			</section>
+			<section>
+				<button id="control" onclick="startTimer(3, 0)">Start</button>
+			</section>			
 		</section>
 	</div><!-- #main-container -->
 </main> 
