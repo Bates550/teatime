@@ -190,18 +190,14 @@ input[type="number"] {
 	font-family: "Courgette";
 	font-size: 60px;
 	text-shadow: -2px 4px 0px #25C720;
+	transition: text-shadow 0.5s ease;
 	color: #FFF;
 }
-/*
-#interface section {
-	box-shadow: none;
-	transition: box-shadow 0.5s ease;
-}
 
-#interface section:hover {
-	box-shadow: inset 0px 0px 18px 0px rgba(50, 50, 50, 1);
-	transition: box-shadow 0.5s ease;
-}*/
+input[type="number"]:hover {
+	text-shadow: -2px 4px 0px #0A8705;
+	transition: text-shadow 0.5s ease;
+}
 
 #interface button {
 	background-image: url(images/arches.png);
@@ -214,7 +210,7 @@ input[type="number"] {
 	font-family: "Courgette";
 	font-size: 60px;
 	text-shadow: -2px 4px 0px #25C720;
-	transition: text-shadow 0.8s ease;
+	transition: text-shadow 0.5s ease;
 	margin: 10px 0;
 	width: 200px;
 	cursor: pointer;
@@ -222,8 +218,8 @@ input[type="number"] {
 }
 
 #interface button:hover {
-	text-shadow: -2px 4px 0px #09a004;
-	transition: text-shadow 0.8s ease;
+	text-shadow: -2px 4px 0px #0A8705;
+	transition: text-shadow 0.5s ease;
 }
 
 /***********************************

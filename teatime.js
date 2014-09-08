@@ -1,44 +1,55 @@
 "use strict";
 
-var timer = document.getElementById("timer");
+var eleMin = document.getElementById("timer-min"),
+	eleSec = document.getElementById("timer-sec"),
+	timeMin,
+	timeSec,
+	time;
 
-function startTimer(startMin, startSec) {
-	var time = new Time(startMin, startSec);
+function getTime() {
+	timeMin = eleMin.valueAsNumber;
+	timeSec = eleSec.valueAsNumber;
+	if (timeMin != 0 || timeSec != 0) {
+		time = new Time(timeMin, timeSec);
+	}
+	console.log("Input time is 0:00. Not starting timer.");
 }
 
 function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
-
 	var that = this;
 	this.intervalId = setInterval(function() { that.tick(); }, 1000);
 
-	timer.innerHTML = this.toString();
+	this.setValue();
+}
+
+Time.prototype.setValue = function() {
+	eleMin.value = this.getMinStr();
+	eleSec.value = this.getSecStr();
 }
 
 Time.prototype.tick = function() {
 	--this.time;
 
-	timer.innerHTML = this.toString();
+	this.setValue();
 
 	if (this.time == 0) {
+		time = undefined;	
 		clearInterval(this.intervalId);
-		// RING RING BITCHES!!
-		console.log('hi');	
+		console.log('RING RING BITCHES');	
 	}
+	console.log(this.getMinStr()+":"+this.getSecStr());
 }
 
-Time.prototype.toString = function() {
-	var result = "",
-		min = Math.floor(this.time/60),
-		sec = this.time%60;
-	result += min + ":";
-	if (sec < 10) {
-		result += "0" + sec;
-	}
-	else {
-		result += sec;
-	}
+Time.prototype.getMinStr = function() {
+	var min = Math.floor(this.time/60);
+	return min.toString();
+}
 
+Time.prototype.getSecStr = function() {
+	var sec = this.time%60,
+		result;
+	sec < 10 ? result = "0"+sec : result = sec;
 	return result;
 }
 
@@ -104,6 +115,14 @@ function fixInput(event, element, type) {
 			element.value = "0";
 		}
 		//console.log(element.value);
+	}
+}
+
+function checkIfStarted(event) {
+	if (event) {
+		if (time == undefined) {
+			getTime();
+		}
 	}
 }
 
