@@ -6,8 +6,6 @@ function startTimer(startMin, startSec) {
 	var time = new Time(startMin, startSec);
 }
 
-
-
 function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
 

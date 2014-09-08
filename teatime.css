@@ -15,8 +15,10 @@ html {
 }
 
 body {
-	background-color: #73F06E;
-	height: 100vh;
+	background-image: url(images/old_moon2.png); 
+	background-repeat: repeat-x repeat-y;
+	//background-color: #73F06E;
+	//height: 100vh;
 }
 
 a:link, a:visited {
@@ -123,6 +125,7 @@ main {
 #timer-container span {
 	font-family: "Courgette";
 	font-size: 60px;
+	text-shadow: -2px 4px 0px #25C720;
 	line-height: 60px;
 	cursor: default;
 }
@@ -145,9 +148,21 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .checkbox-container {
-	//width: 20px;
+	margin: 0 auto;
+	width: 199px;
 	//height: 20px;
 	//background-color: #FFF;
+}
+
+.checkbox-container label {
+	float: left;
+	margin-top: 3px;
+	margin-left: 11px;
+}
+
+.checkbox-container p {
+	margin-top: 1px;
+	margin-right: 11px;	
 }
 
 input[type=checkbox] {
@@ -174,8 +189,19 @@ input[type="number"] {
 	background-image: url(images/arches.png);
 	font-family: "Courgette";
 	font-size: 60px;
+	text-shadow: -2px 4px 0px #25C720;
 	color: #FFF;
 }
+/*
+#interface section {
+	box-shadow: none;
+	transition: box-shadow 0.5s ease;
+}
+
+#interface section:hover {
+	box-shadow: inset 0px 0px 18px 0px rgba(50, 50, 50, 1);
+	transition: box-shadow 0.5s ease;
+}*/
 
 #interface button {
 	background-image: url(images/arches.png);
@@ -187,10 +213,17 @@ input[type="number"] {
 	color: #FFF;
 	font-family: "Courgette";
 	font-size: 60px;
-	margin: 20px 0;
+	text-shadow: -2px 4px 0px #25C720;
+	transition: text-shadow 0.8s ease;
+	margin: 10px 0;
 	width: 200px;
 	cursor: pointer;
 	cursor: hand;
+}
+
+#interface button:hover {
+	text-shadow: -2px 4px 0px #09a004;
+	transition: text-shadow 0.8s ease;
 }
 
 /***********************************
