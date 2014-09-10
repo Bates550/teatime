@@ -2,17 +2,40 @@
 
 var eleMin = document.getElementById("timer-min"),
 	eleSec = document.getElementById("timer-sec"),
+	eleSetDefault = document.getElementById("set-default"),
+	defaultTime = 180,
 	timeMin,
 	timeSec,
 	time;
 
-function getTime() {
+window.onload = function() {
+	var defTime = getDefaultTime(),
+		min = Math.floor(defTime/60),
+		sec = defTime%60;
+	eleMin.value = min;
+	if (sec < 10) {
+		eleSec.value = "0"+sec;
+	}
+	else {
+		eleSec.value = sec;
+	}
+}
+
+function getDefaultTime() {
+	var result;
+	document.cookie == "" ? result = defaultTime : result = document.cookie.split('=')[1];
+	return result;
+}
+
+function getInputTime() {
 	timeMin = eleMin.valueAsNumber;
 	timeSec = eleSec.valueAsNumber;
 	if (timeMin != 0 || timeSec != 0) {
 		time = new Time(timeMin, timeSec);
 	}
-	console.log("Input time is 0:00. Not starting timer.");
+	else {
+		console.log("Input time is 0:00. Not starting timer.");
+	}
 }
 
 function Time(startMin, startSec) {
@@ -121,10 +144,31 @@ function fixInput(event, element, type) {
 function checkIfStarted(event) {
 	if (event) {
 		if (time == undefined) {
-			getTime();
+			getInputTime();
 		}
 	}
 }
+
+
+
+/* Called onchange of setDefault checkbox.
+ * 
+ */
+function setDefault() {
+	var min = eleMin.valueAsNumber, 
+		sec = eleSec.valueAsNumber,
+		cval;  	
+	if (eleSetDefault.checked) {
+		cval = min*60+sec;
+		document.cookie = "defaultTime="+cval+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		console.log(document.cookie);
+		//return true;
+	}
+	else {
+
+	}
+}
+
 
 function sayHi() {
 	console.log("Hi.");

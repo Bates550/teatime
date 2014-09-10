@@ -24,13 +24,13 @@
 			<section id="timer"> 
 				<p>Set steep time:</p>
 				<div id="timer-container">
-					<input type="number" value="3" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" id="timer-min">
+					<input type="number" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" id="timer-min">
 					<span>:</span>
-					<input type="number" value="00" min="00" max="59" onkeydown="return isNumber(event, this, 'sec')" onchange="fixInput(event, this, 'sec')" id="timer-sec">
+					<input type="number" min="00" max="59" onkeydown="return isNumber(event, this, 'sec')" onchange="fixInput(event, this, 'sec')" id="timer-sec">
 				</div>
 				<div class="checkbox-container"	>
-					<input type="checkbox" value="None" id="checkbox">
-					<label for="checkbox"></label>
+					<input type="checkbox" onchange="setDefault(event);" id="set-default">
+					<label for="set-default"></label>
 					<p>Set as default.</p>
 				</div>
 			</section>
