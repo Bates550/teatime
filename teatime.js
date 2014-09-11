@@ -149,10 +149,9 @@ function checkIfStarted(event) {
 	}
 }
 
-
-
 /* Called onchange of setDefault checkbox.
- * 
+ * If checkbox is checked, sets cookie to current input time.
+ * Else, deletes cookie. 
  */
 function setDefault() {
 	var min = eleMin.valueAsNumber, 
@@ -161,14 +160,11 @@ function setDefault() {
 	if (eleSetDefault.checked) {
 		cval = min*60+sec;
 		document.cookie = "defaultTime="+cval+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
-		console.log(document.cookie);
-		//return true;
 	}
 	else {
-
+		document.cookie = "defaultTime=; expires=Thu, 18 Dec 1984 12:00:00 UTC";
 	}
 }
-
 
 function sayHi() {
 	console.log("Hi.");

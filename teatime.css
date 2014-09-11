@@ -103,6 +103,31 @@ main {
 	text-align: center;
 }
 
+/***********************************
+ * ------- Set Timer Input ------- *
+ ***********************************/
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type="number"] {
+	text-align: center;
+	border: none;
+	background-image: url(images/arches.png);
+	font-family: "Courgette";
+	font-size: 60px;
+	text-shadow: -2px 4px 0px #25C720;
+	transition: text-shadow 0.5s ease;
+	color: #FFF;
+}
+
+input[type="number"]:hover {
+	text-shadow: -2px 4px 0px #0A8705;
+	transition: text-shadow 0.5s ease;
+}
+
 #timer {
 	color: #FFF;
 }
@@ -142,9 +167,26 @@ main {
 	width: 75px;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
+/***********************************
+ * ----- Set Default Checkbox ---- *
+ ***********************************/
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type="checkbox"] + label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	background: url(images/uncheck.png) left top no-repeat;
+	cursor: pointer;
+	cursor: hand;
+}
+
+input[type="checkbox"]:checked + label {
+	background: url(images/check.png) left top no-repeat;
 }
 
 .checkbox-container {
@@ -165,39 +207,9 @@ input[type="number"]::-webkit-outer-spin-button {
 	margin-right: 11px;	
 }
 
-input[type=checkbox] {
-	display: none;
-}
-
-input[type="checkbox"] + label {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
-	background: url(images/uncheck.png) left top no-repeat;
-	cursor: pointer;
-	cursor: hand;
-}
-
-input[type="checkbox"]:checked + label {
-	background: url(images/check.png) left top no-repeat;
-}
-
-input[type="number"] {
-	text-align: center;
-	border: none;
-	background-image: url(images/arches.png);
-	font-family: "Courgette";
-	font-size: 60px;
-	text-shadow: -2px 4px 0px #25C720;
-	transition: text-shadow 0.5s ease;
-	color: #FFF;
-}
-
-input[type="number"]:hover {
-	text-shadow: -2px 4px 0px #0A8705;
-	transition: text-shadow 0.5s ease;
-}
+/***********************************
+ * --------- Start Button -------- *
+ ***********************************/
 
 #interface button {
 	background-image: url(images/arches.png);
