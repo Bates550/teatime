@@ -137,7 +137,9 @@ function fixInput(event, element, type) {
 		else if (element.value == "" && type == 'min') {
 			element.value = "0";
 		}
-		//console.log(element.value);
+		if (eleSetDefault.checked) {
+			eleSetDefault.checked = false;
+		}
 	}
 }
 
@@ -150,8 +152,13 @@ function checkIfStarted(event) {
 }
 
 /* Called onchange of setDefault checkbox.
- * If checkbox is checked, sets cookie to current input time.
- * Else, deletes cookie. 
+ * If checkbox is checked, stores current default time in defaultTime 
+ * and sets cookie to current input time.
+ * Else (i.e. box is unchecked), cookie is set to value held by 
+ * defaultTime.
+ * If the box is checked and input numbers are then changed,
+ * fixInput() handles unchecking the checkbox, and setDefault() is
+ * is not called.
  */
 function setDefault() {
 	var min = eleMin.valueAsNumber, 
@@ -159,10 +166,11 @@ function setDefault() {
 		cval;  	
 	if (eleSetDefault.checked) {
 		cval = min*60+sec;
+		defaultTime = getDefaultTime();
 		document.cookie = "defaultTime="+cval+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
 	}
 	else {
-		document.cookie = "defaultTime=; expires=Thu, 18 Dec 1984 12:00:00 UTC";
+		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
 	}
 }
 
