@@ -15,9 +15,9 @@ html {
 }
 
 body {
-	background-image: url(images/old_moon2.png); 
-	background-repeat: repeat-x repeat-y;
-	//background-color: #73F06E;
+	//background-image: url(images/old_moon2.png); 
+	//background-repeat: repeat-x repeat-y;
+	background-color: #73F06E;
 	//height: 100vh;
 }
 
@@ -212,26 +212,53 @@ input[type="checkbox"]:checked + label {
  ***********************************/
 
 #interface button {
+	opacity: 1;
+	border-radius: 15px;
+	color: #FFF;
+	font-family: "Courgette";
+	font-size: 60px;
+	margin: 10px 0;
+	padding-bottom: 0px;
+	width: 200px;
+	cursor: pointer;
+	cursor: hand;
+	transition: text-shadow 0.5s ease, 
+		background-image 0.5s ease,
+		border 0.5s ease,
+		opacity 0.2s ease-in;
+}
+
+#interface button:hover {
+	transition: text-shadow 0.5s ease, 
+		background-image 0.5s ease,
+		border 0.5s ease,
+		opacity 0.2s ease-in;
+}
+
+.start {
 	background-image: url(images/arches.png);
 	border-bottom: 7px solid #25C720;
 	border-top: 7px solid #25C720;
 	border-left: 2px solid #25C720;
 	border-right: 2px solid #25C720;
-	border-radius: 15px;
-	color: #FFF;
-	font-family: "Courgette";
-	font-size: 60px;
 	text-shadow: -2px 4px 0px #25C720;
-	transition: text-shadow 0.5s ease;
-	margin: 10px 0;
-	width: 200px;
-	cursor: pointer;
-	cursor: hand;
 }
 
-#interface button:hover {
+.start:hover {
 	text-shadow: -2px 4px 0px #0A8705;
-	transition: text-shadow 0.5s ease;
+}
+
+.stop {
+	background-image: url(images/arches_red.png);
+	border-bottom: 7px solid #ed5252; //#f83939;
+	border-top: 7px solid #ed5252; //#f83939;
+	border-left: 2px solid #ed5252; //#f83939;
+	border-right: 2px solid #ed5252; //#f83939;
+	text-shadow: -2px 4px 0px #ed5252; //#f83939;
+}
+
+.stop:hover {
+	text-shadow: -2px 4px 0px #f71717;
 }
 
 /***********************************

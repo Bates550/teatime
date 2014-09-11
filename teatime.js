@@ -3,6 +3,7 @@
 var eleMin = document.getElementById("timer-min"),
 	eleSec = document.getElementById("timer-sec"),
 	eleSetDefault = document.getElementById("set-default"),
+	eleControl = document.getElementById("control"),
 	defaultTime = 180,
 	timeMin,
 	timeSec,
@@ -27,16 +28,29 @@ function getDefaultTime() {
 	return result;
 }
 
+/* Called onclick of control button from checkIfStarted() if the
+ * timer is not already ticking. 
+ *
+ */
 function getInputTime() {
 	timeMin = eleMin.valueAsNumber;
 	timeSec = eleSec.valueAsNumber;
-	if (timeMin != 0 || timeSec != 0) {
+	if (timeMin != 0 || timeSec != 0) { // i.e. !(timeMin == 0 && timeSec == 0)
 		time = new Time(timeMin, timeSec);
+		startControlTransition();
 	}
 	else {
 		console.log("Input time is 0:00. Not starting timer.");
 	}
 }
+
+function startControlTransition() {
+	control.classList.remove("start");
+	control.classList.add("stop");
+	// Transition text to "Stop"
+	control.innerHTML = "Stop";
+}
+
 
 function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
@@ -143,6 +157,8 @@ function fixInput(event, element, type) {
 	}
 }
 
+/* Called onclick of control button.
+ */
 function checkIfStarted(event) {
 	if (event) {
 		if (time == undefined) {
@@ -163,11 +179,11 @@ function checkIfStarted(event) {
 function setDefault() {
 	var min = eleMin.valueAsNumber, 
 		sec = eleSec.valueAsNumber,
-		cval;  	
+		newTime;  	
 	if (eleSetDefault.checked) {
-		cval = min*60+sec;
+		newTime = min*60+sec;
 		defaultTime = getDefaultTime();
-		document.cookie = "defaultTime="+cval+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		document.cookie = "defaultTime="+newTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
 	}
 	else {
 		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
