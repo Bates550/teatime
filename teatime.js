@@ -45,15 +45,20 @@ function getInputTime() {
 	}
 }
 
+/* Controls the Start/Stop transition
+ */
 function doControlTransition() {
 	eleControl.classList.remove("start");
 	eleControl.classList.add("stop");
-	eleControlDiv.classList.remove("no-fade");
-	eleControlDiv.classList.add("fade-out");
-	setTimeout(changeText, 200);
+	fadeOut();
+
+	function fadeOut() {
+		eleControlDiv.classList.add("fade-out");
+		setTimeout(changeText, 200);
+	}
 
 	function changeText() {
-		eleControlDiv.innerHTML = "Stop";	
+		eleControlDiv.innerHTML = "Stop";
 		eleControlDiv.classList.remove("fade-out");
 		eleControlDiv.classList.add("fade-in");
 		setTimeout(fadeIn, 200);
@@ -61,7 +66,6 @@ function doControlTransition() {
 
 	function fadeIn() {
 		eleControlDiv.classList.remove("fade-in");
-		eleControlDiv.classList.add("no-fade");
 	}
 }
 

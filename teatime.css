@@ -110,9 +110,12 @@ main {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
+	margin: 0;
 }
 
+
 input[type="number"] {
+	-moz-appearance: textfield;
 	text-align: center;
 	border: none;
 	background-image: url(images/arches.png);
@@ -192,8 +195,6 @@ input[type="checkbox"]:checked + label {
 .checkbox-container {
 	margin: 0 auto;
 	width: 199px;
-	//height: 20px;
-	//background-color: #FFF;
 }
 
 .checkbox-container label {
@@ -208,7 +209,7 @@ input[type="checkbox"]:checked + label {
 }
 
 /***********************************
- * --------- Start Button -------- *
+ * ------- Start/Stop Button ----- *
  ***********************************/
 
 #interface button {
@@ -235,11 +236,8 @@ input[type="checkbox"]:checked + label {
 		opacity 0.2s ease-in;
 }
 
-#interface button div {
+.fade-class {
 	position: relative;
-}
-
-.no-fade {
 	bottom: 0px;
 	opacity: 1;
 	transition: bottom 0.2s ease,
@@ -254,8 +252,6 @@ input[type="checkbox"]:checked + label {
 .fade-out {
 	bottom: 25px;
 	opacity: 0;
-	transition: bottom 0.2s ease,
-		opacity 0.1s ease;
 }
 
 .start {
@@ -273,11 +269,11 @@ input[type="checkbox"]:checked + label {
 
 .stop {
 	background-image: url(images/arches_red.png);
-	border-bottom: 7px solid #ed5252; //#f83939;
-	border-top: 7px solid #ed5252; //#f83939;
-	border-left: 2px solid #ed5252; //#f83939;
-	border-right: 2px solid #ed5252; //#f83939;
-	text-shadow: -2px 4px 0px #ed5252; //#f83939;
+	border-bottom: 7px solid #ed5252; 
+	border-top: 7px solid #ed5252; 
+	border-left: 2px solid #ed5252; 
+	border-right: 2px solid #ed5252; 
+	text-shadow: -2px 4px 0px #ed5252; 
 }
 
 .stop:hover {
