@@ -229,10 +229,33 @@ input[type="checkbox"]:checked + label {
 }
 
 #interface button:hover {
-	transition: text-shadow 0.5s ease, 
-		background-image 0.5s ease,
-		border 0.5s ease,
+	transition: text-shadow 1.0s ease, 
+		background-image 1.0s ease,
+		border 1.0s ease,
 		opacity 0.2s ease-in;
+}
+
+#interface button div {
+	position: relative;
+}
+
+.no-fade {
+	bottom: 0px;
+	opacity: 1;
+	transition: bottom 0.2s ease,
+		opacity 0.1s ease;
+}
+
+.fade-in {
+	bottom: -25px;
+	opacity: 0;
+}
+
+.fade-out {
+	bottom: 25px;
+	opacity: 0;
+	transition: bottom 0.2s ease,
+		opacity 0.1s ease;
 }
 
 .start {
