@@ -4,6 +4,7 @@ var eleMin = document.getElementById("timer-min"),
 	eleSec = document.getElementById("timer-sec"),
 	eleSetDefault = document.getElementById("set-default"),
 	eleControl = document.getElementById("control"),
+	eleControlDiv = eleControl.firstElementChild,
 	defaultTime = 180,
 	timeMin,
 	timeSec,
@@ -37,18 +38,31 @@ function getInputTime() {
 	timeSec = eleSec.valueAsNumber;
 	if (timeMin != 0 || timeSec != 0) { // i.e. !(timeMin == 0 && timeSec == 0)
 		time = new Time(timeMin, timeSec);
-		startControlTransition();
+		doControlTransition();
 	}
 	else {
 		console.log("Input time is 0:00. Not starting timer.");
 	}
 }
 
-function startControlTransition() {
-	control.classList.remove("start");
-	control.classList.add("stop");
-	// Transition text to "Stop"
-	control.innerHTML = "Stop";
+function doControlTransition() {
+	eleControl.classList.remove("start");
+	eleControl.classList.add("stop");
+	eleControlDiv.classList.remove("no-fade");
+	eleControlDiv.classList.add("fade-out");
+	setTimeout(changeText, 200);
+
+	function changeText() {
+		eleControlDiv.innerHTML = "Stop";	
+		eleControlDiv.classList.remove("fade-out");
+		eleControlDiv.classList.add("fade-in");
+		setTimeout(fadeIn, 200);
+	}
+
+	function fadeIn() {
+		eleControlDiv.classList.remove("fade-in");
+		eleControlDiv.classList.add("no-fade");
+	}
 }
 
 
