@@ -30,52 +30,118 @@ function getDefaultTime() {
 	return result;
 }
 
+/* Called onclick of control button.
+ */
+function checkIfStarted(event) {
+	if (event) {
+		if (time == undefined && eleControl.classList.contains("start")) {
+			getInputTime();
+		}
+		else if (time != undefined && eleControl.classList.contains("stop")) {
+			stopTimer();
+		}
+	}
+}
+
 /* Called onclick of control button from checkIfStarted() if the
  * timer is not already ticking. 
- *
  */
 function getInputTime() {
 	timeMin = eleMin.valueAsNumber;
 	timeSec = eleSec.valueAsNumber;
 	if (timeMin != 0 || timeSec != 0) { // i.e. !(timeMin == 0 && timeSec == 0)
 		time = new Time(timeMin, timeSec);
-		doControlTransition();
+		doStartToStop();
 	}
 	else {
 		console.log("Input time is 0:00. Not starting timer.");
 	}
 }
 
-/* Controls the Start/Stop transition
- */
-function doControlTransition() {
-	eleControl.classList.remove("start");
-	eleControl.classList.add("stop");
-	eleSetDefault.parentNode.classList.add("hidden");
+function stopTimer() {
+	time.delete();
+	doStopToStart();
+}
+
+function doStopToStart() {
+	var ctrl = eleControl.classList,
+		setDef = eleSetDefault.parentNode.classList,
+		timrDescr = eleTimerDescription.classList,
+		ctrlDiv = eleControlDiv.classList;
+
+	ctrl.remove("stop");
+	ctrl.add("start");
 	fadeOut();
 
 	function fadeOut() {
-		eleControlDiv.classList.add("fade-out");
-		eleTimerDescription.classList.add("fade-out");
+		ctrlDiv.add("fade-out");
+		
+		timrDescr.add("fade-out");
+
+		setDef.remove("hidden");
+		setDef.add("fade-out");
+		
+		setTimeout(changeText, 200);
+	}
+
+	function changeText() {
+		eleControlDiv.innerHTML = "Start";
+		ctrlDiv.remove("fade-out");
+		ctrlDiv.add("fade-in");
+
+		eleTimerDescription.innerHTML = "Set steep time:";
+		timrDescr.remove("fade-out");
+		timrDescr.add("fade-in");
+
+		setDef.remove("fade-out");
+		setDef.add("fade-in");
+
+		setTimeout(fadeIn, 200);
+	}
+
+	function fadeIn() {
+		ctrlDiv.remove("fade-in");
+		timrDescr.remove("fade-in");
+		setDef.remove("fade-in");
+	}
+}
+
+/* Controls the Start->Stop transition
+ */
+function doStartToStop() {
+	var ctrl = eleControl.classList,
+		setDef = eleSetDefault.parentNode.classList,
+		timrDescr = eleTimerDescription.classList,
+		ctrlDiv = eleControlDiv.classList;
+	ctrl.remove("start");
+	ctrl.add("stop");
+	fadeOut();
+
+	function fadeOut() {
+		ctrlDiv.add("fade-out");
+		timrDescr.add("fade-out");
+		setDef.add("fade-out");
 		setTimeout(changeText, 200);
 	}
 
 	function changeText() {
 		eleControlDiv.innerHTML = "Stop";
-		eleControlDiv.classList.remove("fade-out");
-		eleControlDiv.classList.add("fade-in");
+		ctrlDiv.remove("fade-out");
+		ctrlDiv.add("fade-in");
 
-		//eleTimerDescription.innerHTML = "Press Stop to unlock.";
 		eleTimerDescription.innerHTML = "";
-		eleTimerDescription.classList.add("lock");
-		eleTimerDescription.classList.remove("fade-out");
-		eleTimerDescription.classList.add("fade-in");
+		timrDescr.remove("fade-out");
+		timrDescr.add("fade-in");
+
+		setDef.remove("fade-out");
+		setDef.add("hidden");
+
 		setTimeout(fadeIn, 200);
 	}
 
 	function fadeIn() {
-		eleControlDiv.classList.remove("fade-in");
-		eleTimerDescription.classList.remove("fade-in");
+		ctrlDiv.remove("fade-in");
+		timrDescr.remove("fade-in");
 	}
 }
 
@@ -86,6 +152,11 @@ function Time(startMin, startSec) {
 	this.intervalId = setInterval(function() { that.tick(); }, 1000);
 
 	this.setValue();
+}
+
+Time.prototype.delete = function() {
+	time = undefined;
+	clearInterval(this.intervalId);
 }
 
 Time.prototype.setValue = function() {
@@ -99,8 +170,9 @@ Time.prototype.tick = function() {
 	this.setValue();
 
 	if (this.time == 0) {
-		time = undefined;	
-		clearInterval(this.intervalId);
+		//time = undefined;	
+		//clearInterval(this.intervalId);
+		this.delete();
 		console.log('RING RING BITCHES');	
 	}
 	console.log(this.getMinStr()+":"+this.getSecStr());
@@ -181,16 +253,6 @@ function fixInput(event, element, type) {
 		}
 		if (eleSetDefault.checked) {
 			eleSetDefault.checked = false;
-		}
-	}
-}
-
-/* Called onclick of control button.
- */
-function checkIfStarted(event) {
-	if (event) {
-		if (time == undefined) {
-			getInputTime();
 		}
 	}
 }
