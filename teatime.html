@@ -22,13 +22,13 @@
 		</section>
 		<section id="interface">
 			<section id="timer"> 
-				<p>Set steep time:</p>
+				<p id="timer-description" class="fade-class">Set steep time:</p>
 				<div id="timer-container">
 					<input type="number" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" id="timer-min">
 					<span>:</span>
 					<input type="number" min="00" max="59" onkeydown="return isNumber(event, this, 'sec')" onchange="fixInput(event, this, 'sec')" id="timer-sec">
 				</div>
-				<div class="checkbox-container"	>
+				<div class="checkbox-container">
 					<input type="checkbox" onchange="setDefault()" id="set-default">
 					<label for="set-default"></label>
 					<p>Set as default.</p>

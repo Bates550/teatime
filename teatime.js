@@ -1,6 +1,7 @@
 "use strict";
 
-var eleMin = document.getElementById("timer-min"),
+var eleTimerDescription = document.getElementById("timer-description"),
+	eleMin = document.getElementById("timer-min"),
 	eleSec = document.getElementById("timer-sec"),
 	eleSetDefault = document.getElementById("set-default"),
 	eleControl = document.getElementById("control"),
@@ -50,10 +51,12 @@ function getInputTime() {
 function doControlTransition() {
 	eleControl.classList.remove("start");
 	eleControl.classList.add("stop");
+	eleSetDefault.parentNode.classList.add("hidden");
 	fadeOut();
 
 	function fadeOut() {
 		eleControlDiv.classList.add("fade-out");
+		eleTimerDescription.classList.add("fade-out");
 		setTimeout(changeText, 200);
 	}
 
@@ -61,11 +64,18 @@ function doControlTransition() {
 		eleControlDiv.innerHTML = "Stop";
 		eleControlDiv.classList.remove("fade-out");
 		eleControlDiv.classList.add("fade-in");
+
+		//eleTimerDescription.innerHTML = "Press Stop to unlock.";
+		eleTimerDescription.innerHTML = "";
+		eleTimerDescription.classList.add("lock");
+		eleTimerDescription.classList.remove("fade-out");
+		eleTimerDescription.classList.add("fade-in");
 		setTimeout(fadeIn, 200);
 	}
 
 	function fadeIn() {
 		eleControlDiv.classList.remove("fade-in");
+		eleTimerDescription.classList.remove("fade-in");
 	}
 }
 

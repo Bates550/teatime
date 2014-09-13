@@ -17,7 +17,7 @@ html {
 body {
 	//background-image: url(images/old_moon2.png); 
 	//background-repeat: repeat-x repeat-y;
-	background-color: #73F06E;
+	//background-color: #73F06E;
 	//height: 100vh;
 }
 
@@ -54,6 +54,14 @@ h3, h4, h5, h6 {
 	margin: 0 auto;
 }
 
+.hidden {
+	visibility: hidden;
+}
+
+.fade-class {
+	position: relative;
+}
+
 /***********************************
  * ----------- HEADER ------------ *
  ***********************************/
@@ -73,7 +81,7 @@ h3, h4, h5, h6 {
 #masthead h1 {
 	padding-left: 6px;
 	font-size: 35px;
-	color: #FFF;//#21541F;	
+	color: #FFF;
 	text-shadow: -2px 4px 0px #25C720;
 	text-align: center;
 }
@@ -85,6 +93,7 @@ h3, h4, h5, h6 {
 
 main {
 	height: 83.903vh;	
+	background-color: #73F06E;
 }
 
 #animation {
@@ -137,8 +146,32 @@ input[type="number"]:hover {
 
 #timer p {
 	font-size: 22px;
+	height: 25px;
 	margin-bottom: -2px;
 	padding: 0;
+}
+
+#timer p.fade-class {
+	opacity: 1;
+	transition: left 0.2s ease,
+		opacity 0.1s ease;
+}
+
+#timer p.fade-out {
+	opacity: 0;
+}
+
+#timer p.fade-in {
+	opacity: 0;
+}
+
+#timer p.lock {
+	background-image: url(images/lock.png);
+	background-repeat: no-repeat;
+	background-position: top center;
+	//background-position: 7px 1px;
+	//padding-left: 22px;
+	//font-size: 18px;
 }
 
 #timer-container {
@@ -218,7 +251,6 @@ input[type="checkbox"]:checked + label {
 	color: #FFF;
 	font-family: "Courgette";
 	font-size: 60px;
-	margin: 10px 0;
 	padding-bottom: 0px;
 	width: 200px;
 	cursor: pointer;
@@ -226,30 +258,31 @@ input[type="checkbox"]:checked + label {
 	transition: text-shadow 0.5s ease, 
 		background-image 0.5s ease,
 		border 0.5s ease,
-		opacity 0.2s ease-in;
+		opacity 0.2s ease,
+		margin-top 0.6s ease;
 }
 
 #interface button:hover {
 	transition: text-shadow 1.0s ease, 
 		background-image 1.0s ease,
 		border 1.0s ease,
-		opacity 0.2s ease-in;
+		opacity 0.2s ease-in,
+		margin-top 0.6s ease;
 }
 
-.fade-class {
-	position: relative;
+#control div.fade-class {
 	bottom: 0px;
 	opacity: 1;
 	transition: bottom 0.2s ease,
 		opacity 0.1s ease;
 }
 
-.fade-in {
+#control div.fade-in {
 	bottom: -25px;
 	opacity: 0;
 }
 
-.fade-out {
+#control div.fade-out {
 	bottom: 25px;
 	opacity: 0;
 }
@@ -261,6 +294,7 @@ input[type="checkbox"]:checked + label {
 	border-left: 2px solid #25C720;
 	border-right: 2px solid #25C720;
 	text-shadow: -2px 4px 0px #25C720;
+	margin-top: 10px;
 }
 
 .start:hover {
@@ -274,6 +308,7 @@ input[type="checkbox"]:checked + label {
 	border-left: 2px solid #ed5252; 
 	border-right: 2px solid #ed5252; 
 	text-shadow: -2px 4px 0px #ed5252; 
+	margin-top: -10px;
 }
 
 .stop:hover {
