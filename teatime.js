@@ -51,7 +51,7 @@ function getInputTime() {
 	timeSec = eleSec.valueAsNumber;
 	if (timeMin != 0 || timeSec != 0) { // i.e. !(timeMin == 0 && timeSec == 0)
 		time = new Time(timeMin, timeSec);
-		doStartToStop();
+		doTransition("start");
 	}
 	else {
 		console.log("Input time is 0:00. Not starting timer.");
@@ -60,83 +60,55 @@ function getInputTime() {
 
 function stopTimer() {
 	time.delete();
-	doStopToStart();
+	doTransition("stop");
 }
 
-function doStopToStart() {
-	var ctrl = eleControl.classList,
-		setDef = eleSetDefault.parentNode.classList,
-		timrDescr = eleTimerDescription.classList,
-		ctrlDiv = eleControlDiv.classList;
-
-	ctrl.remove("stop");
-	ctrl.add("start");
-	setDef.remove("hidden");
-
-	fadeOut();
-
-	function fadeOut() {
-		ctrlDiv.add("fade-out");
-		
-		timrDescr.add("fade-out");
-
-		setDef.add("fade-out");
-		
-		setTimeout(changeText, 200);
-	}
-
-	function changeText() {
-		eleControlDiv.innerHTML = "Start";
-		ctrlDiv.remove("fade-out");
-		ctrlDiv.add("fade-in");
-
-		eleTimerDescription.innerHTML = "Set steep time:";
-		timrDescr.remove("fade-out");
-		timrDescr.add("fade-in");
-
-		setDef.remove("fade-out");
-		setDef.add("fade-in");
-
-		setTimeout(fadeIn, 200);
-	}
-
-	function fadeIn() {
-		ctrlDiv.remove("fade-in");
-		timrDescr.remove("fade-in");
-		setDef.remove("fade-in");
-	}
-}
-
-/* Controls the Start->Stop transition
+/* Controls transitions from Start->Stop and Stop->Start
+ * depending on supplied startState.
  */
-function doStartToStop() {
+function doTransition(startState) {
 	var ctrl = eleControl.classList,
 		setDef = eleSetDefault.parentNode.classList,
 		timrDescr = eleTimerDescription.classList,
-		ctrlDiv = eleControlDiv.classList;
-	ctrl.remove("start");
-	ctrl.add("stop");
+		ctrlDiv = eleControlDiv.classList,
+		endState;
+
+	startState == "start" ? endState = "stop" : endState = "start";
+
+	ctrl.remove(startState);
+	ctrl.add(endState);
+
+	if (startState == "stop") { setDef.remove("hidden"); }
+
 	fadeOut();
 
 	function fadeOut() {
 		ctrlDiv.add("fade-out");
 		timrDescr.add("fade-out");
 		setDef.add("fade-out");
+		
 		setTimeout(changeText, 200);
 	}
 
 	function changeText() {
-		eleControlDiv.innerHTML = "Stop";
+		var ctrlDivText,
+			timrDescrText;
+		startState == "start" ? ctrlDivText = "Stop" : ctrlDivText = "Start";
+		eleControlDiv.innerHTML = ctrlDivText;
+
 		ctrlDiv.remove("fade-out");
 		ctrlDiv.add("fade-in");
 
-		eleTimerDescription.innerHTML = "";
+		startState == "start" ? timrDescrText = "" : timrDescrText = "Set steep time:";
+		eleTimerDescription.innerHTML = timrDescrText;
+
 		timrDescr.remove("fade-out");
 		timrDescr.add("fade-in");
 
 		setDef.remove("fade-out");
 		setDef.add("fade-in");
-		setDef.add("hidden");
+
+		if (startState == "start") { setDef.add("hidden"); }
 
 		setTimeout(fadeIn, 200);
 	}
@@ -147,7 +119,6 @@ function doStartToStop() {
 		setDef.remove("fade-in");
 	}
 }
-
 
 function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
