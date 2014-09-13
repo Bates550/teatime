@@ -71,6 +71,8 @@ function doStopToStart() {
 
 	ctrl.remove("stop");
 	ctrl.add("start");
+	setDef.remove("hidden");
+
 	fadeOut();
 
 	function fadeOut() {
@@ -78,7 +80,6 @@ function doStopToStart() {
 		
 		timrDescr.add("fade-out");
 
-		setDef.remove("hidden");
 		setDef.add("fade-out");
 		
 		setTimeout(changeText, 200);
@@ -134,6 +135,7 @@ function doStartToStop() {
 		timrDescr.add("fade-in");
 
 		setDef.remove("fade-out");
+		setDef.add("fade-in");
 		setDef.add("hidden");
 
 		setTimeout(fadeIn, 200);
@@ -142,6 +144,7 @@ function doStartToStop() {
 	function fadeIn() {
 		ctrlDiv.remove("fade-in");
 		timrDescr.remove("fade-in");
+		setDef.remove("fade-in");
 	}
 }
 
