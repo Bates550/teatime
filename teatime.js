@@ -12,15 +12,27 @@ var eleTimerDescription = document.getElementById("timer-description"),
 	time;
 
 window.onload = function() {
-	var defTime = getDefaultTime(),
-		min = Math.floor(defTime/60),
-		sec = defTime%60;
-	eleMin.value = min;
-	if (sec < 10) {
-		eleSec.value = "0"+sec;
+	setInput();
+	setMainHeight();
+
+	function setInput() {
+		var defTime = getDefaultTime(),
+			min = Math.floor(defTime/60),
+			sec = defTime%60;
+		eleMin.value = min;
+		if (sec < 10) {
+			eleSec.value = "0"+sec;
+		}
+		else {
+			eleSec.value = sec;
+		}
 	}
-	else {
-		eleSec.value = sec;
+
+	function setMainHeight() {
+		var height = document.documentElement.clientHeight - 104,
+			main = document.getElementById("main");
+
+		main.style.height = height+"px"
 	}
 }
 
@@ -32,21 +44,28 @@ function getDefaultTime() {
 
 /* Called onclick of control button.
  */
-function checkIfStarted(event) {
+function checkTimerState(event) {
 	if (event) {
+		// If time is not ticking and Start button present
 		if (time == undefined && eleControl.classList.contains("start")) {
-			getInputTime();
+			startTimer();
 		}
+		// If time is ticking and Stop button present
 		else if (time != undefined && eleControl.classList.contains("stop")) {
 			stopTimer();
+		}
+		// If time is not ticking and Stop button present 
+		// (i.e. timer has reached 0:00)
+		else if (time == undefined && eleControl.classList.contains("stop")) {
+
 		}
 	}
 }
 
-/* Called onclick of control button from checkIfStarted() if the
- * timer is not already ticking. 
+/* Called onclick of control button from checkTimerState() if the
+ * timer is not already ticking.
  */
-function getInputTime() {
+function startTimer() {
 	timeMin = eleMin.valueAsNumber;
 	timeSec = eleSec.valueAsNumber;
 	if (timeMin != 0 || timeSec != 0) { // i.e. !(timeMin == 0 && timeSec == 0)
@@ -58,6 +77,9 @@ function getInputTime() {
 	}
 }
 
+/* Called onclick of control button from checkTimerState() if the 
+ * timer is ticking and Start button present.
+ */
 function stopTimer() {
 	time.delete();
 	doTransition("stop");
