@@ -42,13 +42,19 @@ function getDefaultTime() {
 	return result;
 }
 
-/* Called onclick of control button.
+function playAudio(audioId) {
+	var audio = document.getElementById(audioId);
+	audio.play();
+}
+
+/* Called onclick of #control button.
  */
 function checkTimerState(event) {
 	if (event) {
 		// If time is not ticking and Start button present
 		if (time == undefined && eleControl.classList.contains("start")) {
 			startTimer();
+			playAudio("boiling-water");
 		}
 		// If time is ticking and Stop button present
 		else if (time != undefined && eleControl.classList.contains("stop")) {
