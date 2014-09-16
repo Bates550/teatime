@@ -42,6 +42,29 @@ function getDefaultTime() {
 	return result;
 }
 
+/* Called onchange of setDefault checkbox.
+ * If checkbox is checked, stores current default time in defaultTime 
+ * and sets cookie to current input time.
+ * Else (i.e. box is unchecked), cookie is set to value held by 
+ * defaultTime.
+ * If the box is checked and input numbers are then changed,
+ * fixInput() handles unchecking the checkbox, and setDefault() is
+ * is not called.
+ */
+function setDefault() {
+	var min = eleMin.valueAsNumber, 
+		sec = eleSec.valueAsNumber,
+		newTime;  	
+	if (eleSetDefault.checked) {
+		newTime = min*60+sec;
+		defaultTime = getDefaultTime();
+		document.cookie = "defaultTime="+newTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+	}
+	else {
+		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+	}
+}
+
 function playAudio(audioId) {
 	var audio = document.getElementById(audioId);
 	audio.play();
@@ -68,7 +91,7 @@ function checkTimerState(event) {
 	}
 }
 
-/* Called onclick of control button from checkTimerState() if the
+/* Called onclick of #control button from checkTimerState() if the
  * timer is not already ticking.
  */
 function startTimer() {
@@ -83,7 +106,7 @@ function startTimer() {
 	}
 }
 
-/* Called onclick of control button from checkTimerState() if the 
+/* Called onclick of #control button from checkTimerState() if the 
  * timer is ticking and Start button present.
  */
 function stopTimer() {
@@ -158,12 +181,14 @@ function Time(startMin, startSec) {
 
 Time.prototype.delete = function() {
 	time = undefined;
+	document.title = "TeaTime";
 	clearInterval(this.intervalId);
 }
 
 Time.prototype.setValue = function() {
 	eleMin.value = this.getMinStr();
 	eleSec.value = this.getSecStr();
+	document.title = "("+eleMin.value+":"+eleSec.value+") TeaTime";
 }
 
 Time.prototype.tick = function() {
@@ -172,12 +197,9 @@ Time.prototype.tick = function() {
 	this.setValue();
 
 	if (this.time == 0) {
-		//time = undefined;	
-		//clearInterval(this.intervalId);
 		this.delete();
 		console.log('RING RING BITCHES');	
 	}
-	console.log(this.getMinStr()+":"+this.getSecStr());
 }
 
 Time.prototype.getMinStr = function() {
@@ -256,29 +278,6 @@ function fixInput(event, element, type) {
 		if (eleSetDefault.checked) {
 			eleSetDefault.checked = false;
 		}
-	}
-}
-
-/* Called onchange of setDefault checkbox.
- * If checkbox is checked, stores current default time in defaultTime 
- * and sets cookie to current input time.
- * Else (i.e. box is unchecked), cookie is set to value held by 
- * defaultTime.
- * If the box is checked and input numbers are then changed,
- * fixInput() handles unchecking the checkbox, and setDefault() is
- * is not called.
- */
-function setDefault() {
-	var min = eleMin.valueAsNumber, 
-		sec = eleSec.valueAsNumber,
-		newTime;  	
-	if (eleSetDefault.checked) {
-		newTime = min*60+sec;
-		defaultTime = getDefaultTime();
-		document.cookie = "defaultTime="+newTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
-	}
-	else {
-		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
 	}
 }
 
