@@ -11,28 +11,29 @@ var eleTimerDescription = document.getElementById("timer-description"),
 	timeSec,
 	time;
 
+console.log(document.cookie);
 window.onload = function() {
 	setInput();
 	setMainHeight();
-
-	function setInput() {
-		var defTime = getDefaultTime(),
-			min = Math.floor(defTime/60),
-			sec = defTime%60;
-		eleMin.value = min;
-		if (sec < 10) {
-			eleSec.value = "0"+sec;
-		}
-		else {
-			eleSec.value = sec;
-		}
-	}
 
 	function setMainHeight() {
 		var height = document.documentElement.clientHeight - 104,
 			main = document.getElementById("main");
 
 		main.style.height = height+"px"
+	}
+}
+
+function setInput() {
+	var defTime = getDefaultTime(),
+		min = Math.floor(defTime/60),
+		sec = defTime%60;
+	eleMin.value = min;
+	if (sec < 10) {
+		eleSec.value = "0"+sec;
+	}
+	else {
+		eleSec.value = sec;
 	}
 }
 
@@ -86,7 +87,7 @@ function checkTimerState(event) {
 		// If time is not ticking and Stop button present 
 		// (i.e. timer has reached 0:00)
 		else if (time == undefined && eleControl.classList.contains("stop")) {
-
+			resetTimer();
 		}
 	}
 }
@@ -111,6 +112,12 @@ function startTimer() {
  */
 function stopTimer() {
 	time.delete();
+	doTransition("stop");
+}
+
+
+function resetTimer() {
+	setInput();	
 	doTransition("stop");
 }
 
