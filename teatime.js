@@ -9,7 +9,8 @@ var eleTimerDescription = document.getElementById("timer-description"),
 	defaultTime = 180,
 	timeMin,
 	timeSec,
-	time;
+	time,
+	alarm;
 
 console.log(document.cookie);
 window.onload = function() {
@@ -66,6 +67,8 @@ function setDefault() {
 	}
 }
 
+/* Plays audio tag with id audioId.
+ */
 function playAudio(audioId) {
 	var audio = document.getElementById(audioId);
 	audio.play();
@@ -115,8 +118,11 @@ function stopTimer() {
 	doTransition("stop");
 }
 
-
+/* Called onclick of #control button from checkTimerState() if the
+ * timer has reached 0:00 and Stop button is present.
+ */
 function resetTimer() {
+	alarm.stop();
 	setInput();	
 	doTransition("stop");
 }
@@ -178,6 +184,26 @@ function doTransition(startState) {
 	}
 }
 
+/* The Alarm object plays the audio tag with id audioId every interval
+ * milliseconds. 
+ * The Alarm object does not stop itself and is stopped only when the user
+ * presses the Stop button after the alarm has begun.
+ */
+function Alarm(audioId, interval) {
+	this.audioId = audioId;
+	var that = this;
+	this.intervalId = setInterval(function() { that.ring(); }, interval);
+}
+
+Alarm.prototype.ring = function() {
+	playAudio(this.audioId);
+}
+
+Alarm.prototype.stop = function() {
+	alarm = undefined;
+	clearInterval(this.intervalId);
+}
+
 function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
 	var that = this;
@@ -205,7 +231,7 @@ Time.prototype.tick = function() {
 
 	if (this.time == 0) {
 		this.delete();
-		console.log('RING RING BITCHES');	
+		alarm = new Alarm("alarm", 1500);
 	}
 }
 
