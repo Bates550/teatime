@@ -51,9 +51,11 @@ function getDefaultTime() {
  * and sets cookie to current input time.
  * Else (i.e. box is unchecked), cookie is set to value held by 
  * defaultTime.
- * If the box is checked and input numbers are then changed,
+ * If the box is checked and input numbers are then changed by the user,
  * fixInput() handles unchecking the checkbox, and setDefault() is
  * is not called.
+ * If the box is checked and the user presses Start, the box is unchecked
+ * in the Time object constructor.
  */
 function setDefault() {
 	var min = eleMin.valueAsNumber, 
@@ -228,6 +230,8 @@ function Time(startMin, startSec) {
 	this.time = startMin*60 + startSec; 
 	var that = this;
 	this.intervalId = setInterval(function() { that.tick(); }, 1000);
+
+	if (eleSetDefault.checked) { eleSetDefault.checked = false; }
 
 	this.setValue();
 }
