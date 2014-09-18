@@ -1,3 +1,7 @@
 Credit to http://subtlepatterns.com/ for providing original or current version of:
 arches.png
 arches_red.png
+
+Credit to http://pngimg.com/ for providing original or current version of:
+cup_front.png
+cup_back.png

@@ -6,6 +6,8 @@ var eleTimerDescription = document.getElementById("timer-description"),
 	eleSetDefault = document.getElementById("set-default"),
 	eleControl = document.getElementById("control"),
 	eleControlDiv = eleControl.firstElementChild,
+	eleTea = document.getElementById("cup-tea"),
+	eleSteam = document.getElementById("cup-steam"),
 	defaultTime = 180,
 	timeMin,
 	timeSec,
@@ -135,6 +137,8 @@ function doTransition(startState) {
 		setDef = eleSetDefault.parentNode.classList,
 		timrDescr = eleTimerDescription.classList,
 		ctrlDiv = eleControlDiv.classList,
+		tea = eleTea.classList,
+		steam = eleSteam.classList,
 		endState;
 
 	startState == "start" ? endState = "stop" : endState = "start";
@@ -142,7 +146,15 @@ function doTransition(startState) {
 	ctrl.remove(startState);
 	ctrl.add(endState);
 
-	if (startState == "stop") { setDef.remove("hidden"); }
+	if (startState == "stop") { 
+		setDef.remove("hidden"); 
+	}
+	else { 
+		tea.remove("cup-empty"); 
+		tea.add("cup-full");
+		steam.remove("cup-no-steam");
+		steam.add("cup-steam");
+	}
 
 	fadeOut();
 
@@ -150,7 +162,7 @@ function doTransition(startState) {
 		ctrlDiv.add("fade-out");
 		timrDescr.add("fade-out");
 		setDef.add("fade-out");
-		
+
 		setTimeout(changeText, 200);
 	}
 
@@ -172,7 +184,15 @@ function doTransition(startState) {
 		setDef.remove("fade-out");
 		setDef.add("fade-in");
 
-		if (startState == "start") { setDef.add("hidden"); }
+		if (startState == "start") { 
+			setDef.add("hidden"); 
+		}
+		else {
+			tea.remove("cup-full");
+			tea.add("cup-empty");
+			steam.remove("cup-steam");
+			steam.add("cup-no-steam");
+		}
 
 		setTimeout(fadeIn, 200);
 	}

@@ -60,7 +60,7 @@ h3, h4, h5, h6 {
 
 .fade-class {
 	position: relative;
-	opacity: 1;
+	//opacity: 0;
 	transition: opacity 0.3s ease;
 }
 
@@ -109,20 +109,83 @@ main {
 	background-color: #73F06E;
 }
 
-#animation {
-	margin: 0 auto;
-	width: 200px;
-}
-
-#animation img {
-	width: 200px;
-	margin-left: 15px;
-}
-
 #interface {
 	margin: 0 auto;
 	width: 200px;
 	text-align: center;
+}
+
+/***********************************
+ * ------ Tea Cup Animation ------ *
+ ***********************************/
+
+#animation {
+	margin: 0 auto;
+	width: 240px;
+	height: 235px;
+	position: relative;
+}
+
+#animation img {
+	position: absolute;
+}
+
+#cup-front {
+	width: 240px;
+	z-index: 2;
+}
+
+#cup-back {
+	width: 240px;
+	z-index: 0;
+}
+
+#cup-tea {
+	position: absolute;
+	z-index: 1;
+	border-radius: 50%;
+	background-color: green;
+	width: 120px;
+	height: 25px;
+	left: 60px;
+	background: #b4e391; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b4e391 0%, #61c419 50%, #b4e391 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b4e391), color-stop(50%,#61c419), color-stop(100%,#b4e391)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #b4e391 0%,#61c419 50%,#b4e391 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #b4e391 0%,#61c419 50%,#b4e391 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #b4e391 0%,#61c419 50%,#b4e391 100%); /* IE10+ */
+	background: linear-gradient(164deg, rgba(217, 188, 158, 1) 0%, rgba(132, 91, 1, 1) 53%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391',GradientType=0 ); /* IE6-9 */
+}
+
+.cup-empty {
+	top: 145px;
+	transition: top 1s ease;
+}
+
+.cup-full {
+	top: 84px;
+	transition: top 5s cubic-bezier(.27, .6, .5, 1) 2s;
+}
+
+#cup-steam {
+	width: 30px;
+	left: 106px;
+	z-index: 4;
+}
+
+.cup-steam {
+	opacity: 1;
+	top: 7px;
+	transition: opacity 0.5s ease-in 7s,
+		top 0.5s ease-in 7s;
+}
+
+.cup-no-steam {
+	opacity: 0;
+	top: 15px;
+	transition: opacity 0.5s ease-out,
+		top 0.5s ease-out;
 }
 
 /***********************************
