@@ -14,16 +14,24 @@ var eleTimerDescription = document.getElementById("timer-description"),
 	time,
 	alarm;
 
-console.log(document.cookie);
 window.onload = function() {
 	setInput();
 	setMainHeight();
+	preloadImages();
 
 	function setMainHeight() {
 		var height = document.documentElement.clientHeight - 104,
 			main = document.getElementById("main");
 
 		main.style.height = height+"px"
+	}
+
+	function preloadImages() {
+		var imgs = ['arches.png', 'arches_red.png', 'check.png', 'uncheck.png'];
+		for (var i=0; i < imgs.length; ++i) {
+			var img = new Image();
+			img.src = "images/"+imgs[i];
+		}
 	}
 }
 
