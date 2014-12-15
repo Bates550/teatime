@@ -15,7 +15,7 @@ html {
 }
 
 body {
-	//background-image: url(images/old_moon2.png); 
+	//background-image: url(images/old_moon2.png);
 	//background-repeat: repeat-x repeat-y;
 	//background-color: #73F06E;
 	height: 100%;
@@ -31,7 +31,7 @@ a:hover, a:active {
 }
 
 ul {
-	list-style-type: none;	
+	list-style-type: none;
 }
 
 p {
@@ -291,7 +291,7 @@ input[type="checkbox"]:checked + label {
 
 .checkbox-container p {
 	margin-top: 1px;
-	margin-right: 11px;	
+	margin-right: 11px;
 }
 
 /***********************************
@@ -308,7 +308,7 @@ input[type="checkbox"]:checked + label {
 	width: 200px;
 	cursor: pointer;
 	cursor: hand;
-	transition: text-shadow 0.5s ease, 
+	transition: text-shadow 0.5s ease,
 		background-image 0.5s ease,
 		border 0.5s ease,
 		opacity 0.2s ease,
@@ -316,7 +316,7 @@ input[type="checkbox"]:checked + label {
 }
 
 #interface button:hover {
-	transition: text-shadow 1.0s ease, 
+	transition: text-shadow 1.0s ease,
 		background-image 1.0s ease,
 		border 1.0s ease,
 		opacity 0.2s ease-in,
@@ -353,11 +353,11 @@ input[type="checkbox"]:checked + label {
 
 .stop {
 	background-image: url(images/arches_red.png);
-	border-bottom: 7px solid #ed5252; 
-	border-top: 7px solid #ed5252; 
-	border-left: 2px solid #ed5252; 
-	border-right: 2px solid #ed5252; 
-	text-shadow: -2px 4px 0px #ed5252; 
+	border-bottom: 7px solid #ed5252;
+	border-top: 7px solid #ed5252;
+	border-left: 2px solid #ed5252;
+	border-right: 2px solid #ed5252;
+	text-shadow: -2px 4px 0px #ed5252;
 	margin-top: -10px;
 }
 
