@@ -28,7 +28,7 @@ window.onload = function() {
 
 	function preloadImages() {
 		var imgs = ['arches.png', 'arches_red.png', 'check.png', 'uncheck.png'];
-		for (var i=0; i < imgs.length; ++i) {
+		for (var i = 0; i < imgs.length; ++i) {
 			var img = new Image();
 			img.src = "images/"+imgs[i];
 		}
@@ -49,8 +49,13 @@ function setInput() {
 }
 
 function getDefaultTime() {
-	var result;
-	document.cookie == "" ? result = defaultTime : result = document.cookie.split('=')[1];
+	var result = localStorage.getItem('tt_defaultTime');
+	if (result === null) {
+		result = defaultTime;
+	}
+	else {
+		result = parseInt(result);
+	}
 	return result;
 }
 
@@ -72,10 +77,10 @@ function setDefault() {
 	if (eleSetDefault.checked) {
 		newTime = min*60+sec;
 		defaultTime = getDefaultTime();
-		document.cookie = "defaultTime="+newTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		localStorage.setItem('tt_defaultTime', newTime);
 	}
 	else {
-		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		localStorage.setItem('tt_defaultTime', defaultTime);
 	}
 }
 
