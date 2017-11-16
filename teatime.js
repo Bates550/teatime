@@ -16,8 +16,14 @@ var eleTimerDescription = document.getElementById("timer-description"),
 
 window.onload = function() {
 	setInput();
+  setCopyright();
 	setMainHeight();
 	preloadImages();
+
+  function setCopyright() {
+    const copyright = document.getElementById('copyright');
+    copyright.innerHTML = `&copy; ${(new Date()).getFullYear()} Sean Spearman`;
+  }
 
 	function setMainHeight() {
 		var height = document.documentElement.clientHeight - 104,
