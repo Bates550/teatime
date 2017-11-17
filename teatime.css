@@ -12,11 +12,13 @@
 
 html {
 	font-family: "Courgette";
+  overflow: hidden;
 }
 
 body {
 	height: 100vh;
 	background-color: #73F06E;
+  overflow: hidden;
 }
 
 :focus {
@@ -83,6 +85,10 @@ h3, h4, h5, h6 {
 	background-repeat: repeat;
 	height: 45px;
 	border-bottom: 7px solid #25C720;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 }
 
 #masthead h1 {
@@ -100,6 +106,13 @@ h3, h4, h5, h6 {
 
 main {
   margin-bottom: 20px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;
+	padding-top: 45px;
 }
 
 #interface {
