@@ -16,19 +16,11 @@ var eleTimerDescription = document.getElementById("timer-description"),
 
 window.onload = function() {
 	setInput();
-	setMainHeight();
 	preloadImages();
-
-	function setMainHeight() {
-		var height = document.documentElement.clientHeight - 104,
-			main = document.getElementById("main");
-
-		main.style.height = height+"px"
-	}
 
 	function preloadImages() {
 		var imgs = ['arches.png', 'arches_red.png', 'check.png', 'uncheck.png'];
-		for (var i=0; i < imgs.length; ++i) {
+		for (var i = 0; i < imgs.length; ++i) {
 			var img = new Image();
 			img.src = "images/"+imgs[i];
 		}
@@ -49,15 +41,20 @@ function setInput() {
 }
 
 function getDefaultTime() {
-	var result;
-	document.cookie == "" ? result = defaultTime : result = document.cookie.split('=')[1];
+	var result = localStorage.getItem('tt_defaultTime');
+	if (result === null) {
+		result = defaultTime;
+	}
+	else {
+		result = parseInt(result);
+	}
 	return result;
 }
 
 /* Called onchange of setDefault checkbox.
- * If checkbox is checked, stores current default time in defaultTime 
+ * If checkbox is checked, stores current default time in defaultTime
  * and sets cookie to current input time.
- * Else (i.e. box is unchecked), cookie is set to value held by 
+ * Else (i.e. box is unchecked), cookie is set to value held by
  * defaultTime.
  * If the box is checked and input numbers are then changed by the user,
  * fixInput() handles unchecking the checkbox, and setDefault() is
@@ -66,16 +63,16 @@ function getDefaultTime() {
  * in the Time object constructor.
  */
 function setDefault() {
-	var min = eleMin.valueAsNumber, 
+	var min = eleMin.valueAsNumber,
 		sec = eleSec.valueAsNumber,
-		newTime;  	
+		newTime;
 	if (eleSetDefault.checked) {
 		newTime = min*60+sec;
 		defaultTime = getDefaultTime();
-		document.cookie = "defaultTime="+newTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		localStorage.setItem('tt_defaultTime', newTime);
 	}
 	else {
-		document.cookie = "defaultTime="+defaultTime+"; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+		localStorage.setItem('tt_defaultTime', defaultTime);
 	}
 }
 
@@ -99,7 +96,7 @@ function checkTimerState(event) {
 		else if (time != undefined && eleControl.classList.contains("stop")) {
 			stopTimer();
 		}
-		// If time is not ticking and Stop button present 
+		// If time is not ticking and Stop button present
 		// (i.e. timer has reached 0:00)
 		else if (time == undefined && eleControl.classList.contains("stop")) {
 			resetTimer();
@@ -122,7 +119,7 @@ function startTimer() {
 	}
 }
 
-/* Called onclick of #control button from checkTimerState() if the 
+/* Called onclick of #control button from checkTimerState() if the
  * timer is ticking and Start button present.
  */
 function stopTimer() {
@@ -135,7 +132,7 @@ function stopTimer() {
  */
 function resetTimer() {
 	alarm.stop();
-	setInput();	
+	setInput();
 	doTransition("stop");
 }
 
@@ -156,11 +153,11 @@ function doTransition(startState) {
 	ctrl.remove(startState);
 	ctrl.add(endState);
 
-	if (startState == "stop") { 
-		setDef.remove("hidden"); 
+	if (startState == "stop") {
+		setDef.remove("hidden");
 	}
-	else { 
-		tea.remove("cup-empty"); 
+	else {
+		tea.remove("cup-empty");
 		tea.add("cup-full");
 		steam.remove("cup-no-steam");
 		steam.add("cup-steam");
@@ -194,8 +191,8 @@ function doTransition(startState) {
 		setDef.remove("fade-out");
 		setDef.add("fade-in");
 
-		if (startState == "start") { 
-			setDef.add("hidden"); 
+		if (startState == "start") {
+			setDef.add("hidden");
 		}
 		else {
 			tea.remove("cup-full");
@@ -215,7 +212,7 @@ function doTransition(startState) {
 }
 
 /* The Alarm object plays the audio tag with id audioId every interval
- * milliseconds. 
+ * milliseconds.
  * The Alarm object does not stop itself and is stopped only when the user
  * presses the Stop button after the alarm has begun.
  */
@@ -235,7 +232,7 @@ Alarm.prototype.stop = function() {
 }
 
 function Time(startMin, startSec) {
-	this.time = startMin*60 + startSec; 
+	this.time = startMin*60 + startSec;
 	var that = this;
 	this.intervalId = setInterval(function() { that.tick(); }, 1000);
 
@@ -294,8 +291,8 @@ function isNumber(event, element, type) {
 			charCode != 46 ) {						// delete
 			return false;
 		}
-		if (element.value.length >= max_chars && charCode > 47) { 
-			return false; 
+		if (element.value.length >= max_chars && charCode > 47) {
+			return false;
 		}
 		else if (charCode == 40 && 			// Down arrow
 			element.valueAsNumber == 0) { 	// Min value for sec and min
@@ -307,7 +304,7 @@ function isNumber(event, element, type) {
 			}
 			return false;
 		}
-		else if (charCode == 38 && 			// Up arrow 
+		else if (charCode == 38 && 			// Up arrow
 			element.valueAsNumber == 59 &&	// Max value for sec
 			type == 'sec') {
 			element.value = "00";
@@ -321,7 +318,7 @@ function isNumber(event, element, type) {
 			return false;
 		}
 		else {
-			return true; 
+			return true;
 		}
 	}
 }

@@ -2,10 +2,33 @@
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#25C720">
+  <link rel="manifest" href="manifest.json">
 	<link rel="stylesheet" href="teatime.css">
+	<!-- ****** faviconit.com favicons ****** -->
+	<link rel="shortcut icon" href="images/favicons/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="images/favicons/favicon-196.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="images/favicons/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicons/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="images/favicons/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/favicons/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/favicons/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/favicons/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/favicons/favicon-72.png">
+	<link rel="apple-touch-icon" href="images/favicons/favicon-57.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="images/favicons/favicon-144.png">
+	<meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+	<!-- ****** faviconit.com favicons ****** -->
 
 	<title>TeaTime</title>
 
@@ -20,13 +43,13 @@
 <main id="main">
 	<div class="container">
 		<section id="animation">
-			<img id="cup-steam" class="cup-no-steam" src="images/cup_steam.png">
+			<img id="cup-steam" class="cup-no-steam" src="images/cup_st.png">
 			<img id="cup-front" src="images/cup_front.png">
 			<img id="cup-back" src="images/cup_back.png">
 			<div id="cup-tea" class="cup-empty"></div>
 		</section>
 		<section id="interface">
-			<section id="timer"> 
+			<section id="timer">
 				<p id="timer-description" class="fade-class">Set steep time:</p>
 				<div id="timer-container">
 					<input type="number" min="0" max="9" onkeydown="return isNumber(event, this, 'min')" onchange="fixInput(event, this, 'min')" id="timer-min">
@@ -45,16 +68,21 @@
 					<audio id="boiling-water" src="audio/boiling_water_long.ogg">
 					<audio id="alarm" src="audio/tim_tum.ogg">
 				</button>
-			</section>			
+			</section>
 		</section>
 	</div><!-- #main-container -->
-</main> 
+</main>
 
-<footer>
-	<div class="container">
-		<p>&copy; 2014 <a href="#">Sean Spearman</a></p>   
-	</div>
-</footer>
 <script src="teatime.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65885140-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>
