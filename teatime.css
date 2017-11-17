@@ -1,5 +1,5 @@
 
-@import url(http://fonts.googleapis.com/css?family=Courgette);
+@import url(//fonts.googleapis.com/css?family=Courgette);
 
 /***********************************
  * ----------- GENERAL ----------- *
@@ -78,11 +78,6 @@ h3, h4, h5, h6 {
  ***********************************/
 
 #masthead {
-	//background-image: url(http://www.hamroni.com/wp-content/uploads/2013/01/DSC02638.jpg);
-	//background-size: auto 1368px;
-	//background-repeat: no-repeat;
-	//background-position: center;
-	//background-color: #37D932;
 	background: url(images/arches.png);
 	background-repeat: repeat;
 	height: 45px;
