@@ -15,7 +15,8 @@ html {
 }
 
 body {
-	height: 100%;
+	height: 100vh;
+	background-color: #73F06E;
 }
 
 :focus {
@@ -98,11 +99,7 @@ h3, h4, h5, h6 {
  ***********************************/
 
 main {
-	//min-height: 100vh;
-	min-height: 539px;
-	//margin-top: -52px;
-	//margin-bottom: -52px;
-	background-color: #73F06E;
+  margin-bottom: 20px;
 }
 
 #interface {
