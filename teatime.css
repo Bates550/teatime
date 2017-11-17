@@ -18,7 +18,8 @@ body {
 	//background-image: url(images/old_moon2.png); 
 	//background-repeat: repeat-x repeat-y;
 	//background-color: #73F06E;
-	height: 100%;
+	height: 100vh;
+ 	overflow: hidden;
 }
 
 a:link, a:visited {
