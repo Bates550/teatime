@@ -1,7 +1,7 @@
 const ENV = 'production';
 let rootPrefix = '';
 if (ENV === 'production') {
-  rootPrefix = 'teatime';
+  rootPrefix = '/teatime';
 }
 
 self.addEventListener('install', (e) => {
