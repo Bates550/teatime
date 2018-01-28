@@ -31,6 +31,11 @@
       "src": "images/favicons/favicon-196.png",
       "type": "image/png",
       "sizes": "196x196"
+    },
+    {
+      "src": "images/cup_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "index.html?launcher=true",
