@@ -2,26 +2,31 @@ html {
   background-color: rebeccapurple;
 }
 
-.appWrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+body {
+  color: #FFF;
 }
 
 .header {
-  height: 20px;
-  width: 100%;
-  background-color: aqua;
-}
-
-.body {
-  height: 100vh;
-  width: 100%;
-  background-color: chartreuse;
+  background-image: url(images/arches.png);
+  border-bottom: 7px solid #25C720;
 }
 
 .footer {
-  height: 20px;
-  width: 100%;
-  background-color: dodgerblue;
+  background-image: url(images/arches.png);
+  border-top: 7px solid #25C720;
+}
+
+.title {
+  font-size: 35px;
+  text-shadow: -2px 4px 0px #25C720;
+}
+
+.body {
+  background-color: chartreuse;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
