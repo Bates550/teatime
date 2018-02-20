@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
+import Body from './Body';
 import Footer from './Footer';
 
 class App extends Component {
@@ -14,13 +15,7 @@ class App extends Component {
         }}
       >
         <Header />
-        <div
-          className="body"
-          style={{
-            height: '100vh',
-            width: '100%',
-          }}
-        />
+        <Body />
         <Footer />
       </div>
     );
