@@ -29,9 +29,15 @@ class TimeInput extends React.Component {
     super(props);
 
     this.state = {
-      digits: [" ", " ", " ", " "]
+      digits: ["0", "0", "0", "0"]
     };
   }
+
+  setStateAndChange = reducer => {
+    this.setState(reducer, () => {
+      this.props.onChange(displayDigits(this.state.digits));
+    });
+  };
 
   render() {
     return (
@@ -39,9 +45,9 @@ class TimeInput extends React.Component {
         onKeyDown={e => {
           const key = e.key;
           if (key === "Backspace") {
-            this.setState(deleteLastCharacter);
+            this.setStateAndChange(deleteLastCharacter);
           } else if (key.match(/[0-9]/)) {
-            this.setState(addCharacter(key));
+            this.setStateAndChange(addCharacter(key));
           }
         }}
         onChange={() => {

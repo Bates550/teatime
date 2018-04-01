@@ -25,7 +25,11 @@ const Body = () => {
           }}
         />
         <div>Set steep time:</div>
-        <TimeInput onBlur={() => {}} defaultValue={() => {}} />
+        <TimeInput
+          onChange={value => {
+            console.log(value);
+          }}
+        />
         <div
           style={{
             marginBottom: "10px",
