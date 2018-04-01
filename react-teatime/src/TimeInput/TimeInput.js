@@ -6,10 +6,6 @@ const displayDigits = digits => {
   return `${minutes}:${seconds}`;
 };
 
-const logState = that => () => {
-  console.log(that.state);
-};
-
 const deleteLastCharacter = state => {
   if (state.digits.length > 4) {
     return { ...state, digits: state.digits.slice(0, -1) };
