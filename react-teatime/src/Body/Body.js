@@ -7,7 +7,7 @@ const startTimer = (time, intervalId) => state => {
 };
 
 const clearTimer = state => {
-  return { ...state, intervalId: null };
+  return { ...state, intervalId: null, time: null };
 };
 
 const setTime = time => state => {
@@ -62,30 +62,42 @@ class Body extends React.Component {
               }}
             />
           ) : (
-            <div value={this.state.time} />
+            <div>{this.state.time}</div>
           )}
-          <div
-            style={{
-              marginBottom: "10px",
-              height: "80px",
-              width: "160px",
-              backgroundColor: "dodgerblue"
-            }}
-            onClick={() => {
-              if (this.state.intervalId !== null) {
+          {this.state.intervalId !== null ? (
+            <div
+              style={{
+                marginBottom: "10px",
+                height: "80px",
+                width: "160px",
+                backgroundColor: "dodgerblue"
+              }}
+              onClick={() => {
                 workerTimers.clearInterval(this.state.intervalId);
                 this.setState(clearTimer);
-              } else {
+              }}
+            >
+              Stop
+            </div>
+          ) : (
+            <div
+              style={{
+                marginBottom: "10px",
+                height: "80px",
+                width: "160px",
+                backgroundColor: "dodgerblue"
+              }}
+              onClick={() => {
                 const intervalId = workerTimers.setInterval(() => {
                   const time = new Date().getTime();
                   console.log(time);
                 }, 1000);
                 this.setState(startTimer(this.state.inputTime, intervalId));
-              }
-            }}
-          >
-            Start
-          </div>
+              }}
+            >
+              Start
+            </div>
+          )}
         </div>
       </div>
     );
