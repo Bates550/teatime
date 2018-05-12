@@ -2,6 +2,7 @@ import React from "react";
 import * as workerTimers from "worker-timers";
 import * as R from "ramda";
 import TimeInput from "../TimeInput";
+import StartStopButton from "../StartStopButton";
 
 const formattedTimeToMs = formattedTime => {
   const [minutes, seconds] = formattedTime.split(":");
@@ -28,7 +29,13 @@ const startTimer = (time, intervalId) => state => {
 };
 
 const clearTimer = state => {
-  return { ...state, intervalId: null, time: null };
+  return {
+    ...state,
+    intervalId: null,
+    delta: null,
+    initialTime: null,
+    inputTime: "00:00"
+  };
 };
 
 const setDelta = delta => state => {
@@ -50,7 +57,7 @@ class Body extends React.Component {
     this.state = {
       intervalId: null,
       delta: null,
-      inputTime: null,
+      inputTime: "00:00",
       initialTime: null
     };
   }
@@ -94,30 +101,14 @@ class Body extends React.Component {
               )}
             </div>
           )}
-          {this.state.intervalId !== null ? (
-            <div
-              style={{
-                marginBottom: "10px",
-                height: "80px",
-                width: "160px",
-                backgroundColor: "dodgerblue"
-              }}
-              onClick={() => {
+          {this.state.inputTime !== "00:00" && (
+            <StartStopButton
+              isTimerRunning={this.state.intervalId !== null}
+              onStartClick={() => {
                 workerTimers.clearInterval(this.state.intervalId);
                 this.setState(clearTimer);
               }}
-            >
-              Stop
-            </div>
-          ) : (
-            <div
-              style={{
-                marginBottom: "10px",
-                height: "80px",
-                width: "160px",
-                backgroundColor: "dodgerblue"
-              }}
-              onClick={() => {
+              onStopClick={() => {
                 const intervalId = workerTimers.setInterval(() => {
                   const time = new Date().getTime();
                   const delta = time - this.state.initialTime;
@@ -130,9 +121,7 @@ class Body extends React.Component {
                 const time = new Date().getTime();
                 this.setState(startTimer(time, intervalId));
               }}
-            >
-              Start
-            </div>
+            />
           )}
         </div>
       </div>
