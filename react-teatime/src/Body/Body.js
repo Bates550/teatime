@@ -88,7 +88,11 @@ class Body extends React.Component {
               }}
             />
           ) : (
-            <div>{msToFormattedTime(this.state.delta)}</div>
+            <div>
+              {msToFormattedTime(
+                formattedTimeToMs(this.state.inputTime) - this.state.delta
+              )}
+            </div>
           )}
           {this.state.intervalId !== null ? (
             <div
